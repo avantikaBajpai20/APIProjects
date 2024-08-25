@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  backend:
+    build: ./Courses-api-Master 
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Courses-api-Master :/courses_api
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1 
+  frontend:
+    build: ./courses_frontend  
+    volumes:
+      - ./courses_frontend:/app
+    ports:
+      - "3000:3000"
+    command: npm start
